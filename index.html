@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0f4c4a">
+<meta name="description" content="Professional home and office cleaning services in Dhaka. Get an instant estimate and book on WhatsApp.">
+<title>Cleaning services</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <div class="wrap bar">
+    <a class="logo" href="#top" aria-label="Home">
+      <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#0f4c4a"/><path d="M16 5l2.6 7.4L26 15l-7.4 2.6L16 25l-2.6-7.4L6 15l7.4-2.6z" fill="#f5c518"/></svg>
+      <span data-brand>Brand</span>
+    </a>
+    <button id="menuBtn" class="menu" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav id="nav" aria-label="Main">
+      <a href="#services">Services</a><a href="#estimate">Estimate</a><a href="#book">Book</a><a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>✨Professional Cleaning for Modern Living</h1>
+      <p class="lead" id="tagline"></p>
+      <ul class="trust" id="trust"></ul>
+      <p><a class="btn" href="#book">Book a cleaning</a> <a class="btn ghost light" href="#estimate">Get an estimate</a>
+</p>
+   
+</section>
+
+<section class="wrap section" id="services">
+  <h2>Our cleaning services</h2>
+  <p class="sub">Prices are set in one config file. Where a rate is not set yet, the card says so.</p>
+  <div class="grid" id="serviceGrid"></div>
+</section>
+<div class="calc card" id="estimate">
+      <h2>Instant estimate</h2>
+      <label for="calcService">Service</label>
+      <select id="calcService"></select>
+      <div id="calcSqftWrap">
+        <label for="calcSqft">Property size (sq ft)</label>
+        <input id="calcSqft" type="number" min="1" inputmode="numeric" placeholder="e.g. 1200">
+      </div>
+      <div id="calcResult" class="result" aria-live="polite"></div>
+      <a id="calcBook" class="btn full" href="#book">Continue to booking</a>
+    </div>
+
+<section class="band" id="book">
+  <div class="wrap narrow">
+    <h2>Book a cleaning</h2>
+    <form id="bookForm">
+      <label for="name">Full name</label>
+      <input id="name" autocomplete="name" required>
+      <label for="phone">Phone number</label>
+      <input id="phone" type="tel" autocomplete="tel" required pattern="[0-9+\-\s()]{7,20}" placeholder="+880 1XXX-XXXXXX">
+      <label for="address">Address</label>
+      <textarea id="address" rows="2" autocomplete="street-address" required></textarea>
+      <label for="service">Service type</label>
+      <select id="service" required></select>
+<label for="paymentMethod">Payment method</label>
+<select id="paymentMethod" required>
+  <option value="">Select payment method</option>
+  <option value="cash">Cash on Service</option>
+  <option value="bkash">bKash Prepayment</option>
+  <option value="nagad">Nagad Prepayment</option>
+</select>
+
+<div id="paymentDetails" hidden>
+  <p id="paymentNumber"></p>
+  <label for="transactionId">Transaction ID</label>
+  <input id="transactionId" type="text"
+         placeholder="Enter Transaction ID">
+</div>
+      <div class="two">
+        <div><label for="size">Property size (sq ft)</label><input id="size" type="number" min="1" required inputmode="numeric"></div>
+        <div><label for="date">Preferred date</label><input id="date" type="date" required></div>
+      </div>
+      <p id="waNotice" class="notice" hidden>The WhatsApp number is still the placeholder in config.js. Set your own number before going live.</p>
+      <div class="actions">
+        <button type="button" id="waBtn" class="btn wa">Book on WhatsApp</button>
+        <button type="button" id="emailBtn" class="btn ghost" disabled>Send by email</button>
+      </div>
+      <p id="emailNote" class="small"></p>
+      <p id="status" role="status"></p>
+    </form>
+  </div>
+</section>
+
+<section class="wrap section" id="contact">
+  <h2>Contact</h2>
+  <p><a id="phoneLink" href="#"></a><br><a id="emailLink" href="#"></a></p>
+  <p id="addr"></p><p id="hours"></p>
+</section>
+</main>
+
+<footer><div class="wrap">&copy; <span id="year"></span> <span data-brand>Brand</span>. All rights reserved.</div></footer>
+
+<noscript><p class="wrap">Please enable JavaScript to see services and book online.</p></noscript>
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
