@@ -114,25 +114,43 @@ footer{background:var(--teal2);color:#cfe3e0;padding:22px 0;font-size:.9rem}
   margin-left: 0;
   flex-shrink: 0;
 }
-/* Service card background images */
+/* Service cards: clear photos and readable text */
 .grid .service-card {
   position: relative;
   overflow: hidden;
-  background-image:
-    linear-gradient(
-      rgba(255, 255, 255, 0.20),
-      rgba(255, 255, 255, 0.35)
-    ),
-    var(--service-image);
+  background-image: var(--service-image);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 300px;
-}
-.grid .service-card h3,
-.grid .service-card p,
-.grid .service-card .price {
   color: #111;
+}
+
+.grid .service-card h3,
+.grid .service-card p {
+  color: #111;
+  font-family: Arial, sans-serif;
   font-weight: 600;
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
+  line-height: 1.45;
+  background: rgba(255, 255, 255, 0.82);
+  padding: 5px 8px;
+  border-radius: 7px;
+  width: fit-content;
+  max-width: 100%;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.grid .service-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.grid .service-card .price {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.grid .service-card .btn {
+  font-weight: 700;
 }
