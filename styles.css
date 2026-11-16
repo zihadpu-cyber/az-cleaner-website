@@ -56,3 +56,9 @@ footer{background:var(--teal2);color:#cfe3e0;padding:22px 0;font-size:.9rem}
  .two{grid-template-columns:1fr}.section,.band{padding:44px 20px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.logo img {
+  width: 150px;
+  height: 45px;
+  object-fit: contain;
+  display: block;
+}
