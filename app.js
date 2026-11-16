@@ -160,6 +160,7 @@ $("#calcBook").addEventListener("click", () => {
   $("#paymentMethod").value = $("#calcPaymentMethod").value;
   $("#paymentMethod").dispatchEvent(new Event("change"));
 });
+  }
   document.addEventListener("click", (e) => {
     const p = e.target.closest("[data-pick]");
     if (p) $("#service").value = p.dataset.pick;
