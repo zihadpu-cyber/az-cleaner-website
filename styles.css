@@ -167,3 +167,51 @@ footer{background:var(--teal2);color:#cfe3e0;padding:22px 0;font-size:.9rem}
   border-color: #106638;
   color: #ffffff;
 }
+/* Mobile-friendly responsive design */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+html {
+  box-sizing: border-box;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+  width: 100%;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .grid .service-card {
+    min-width: 0;
+    min-height: 280px;
+  }
+
+  .grid .service-card h3 {
+    font-size: 18px;
+  }
+
+  .grid .service-card p {
+    overflow-wrap: anywhere;
+  }
+
+  .grid .service-card .btn {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
