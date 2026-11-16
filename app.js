@@ -95,16 +95,36 @@ if (method === "bkash") {
     updatePaymentDetails();
   }
 
-  function updateCalc() {
-    const s = byId($("#calcService").value);
-    $("#calcSqftWrap").hidden = s && s.mode === "flat";
-    const r = calcEstimate(s, $("#calcSqft").value);
-    const out = $("#calcResult");
-    out.classList.toggle("tbc", !r.ok);
-    out.innerHTML = r.ok
-      ? '<strong>' + esc(formatMoney(cfg, r.total)) + '</strong><span>Estimate only. ' + esc(r.note) + " Final price confirmed by us.</span>"
-      : "<strong>" + esc(r.reason) + "</strong><span>No price is shown until a rate is set.</span>";
+function updateCalc() {
+  const s = byId($("#calcService").value);
+  $("#calcSqftWrap").hidden = s && s.mode === "flat";
+
+  const r = calcEstimate(s, $("#calcSqft").value);
+  const out = $("#calcResult");
+  out.classList.toggle("tbc", !r.ok);
+
+  if (!r.ok) {
+    out.innerHTML =
+      "<strong>" + esc(r.reason) +
+      "</strong><span>No price is shown until a rate is set.</span>";
+    return;
   }
+
+  const method = $("#calcPaymentMethod").value;
+  const discount = method === "cash" ? 0 : r.total * 0.10;
+  const finalTotal = r.total - discount;
+
+  out.innerHTML =
+    "<strong>" + esc(formatMoney(cfg, finalTotal)) + "</strong>" +
+    (discount > 0
+      ? "<span>Regular price: " + esc(formatMoney(cfg, r.total)) +
+        "<br>Prepaid discount (10%): -" +
+        esc(formatMoney(cfg, discount)) +
+        "<br>Estimate after discount. " + esc(r.note) +
+        " Final price confirmed by us.</span>"
+      : "<span>No discount. Estimate only. " + esc(r.note) +
+        " Final price confirmed by us.</span>");
+}
   ["#calcService", "#calcSqft"].forEach((q) => $(q).addEventListener("input", updateCalc));
   updateCalc();
 
