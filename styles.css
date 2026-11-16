@@ -215,3 +215,31 @@ body {
     justify-content: center;
   }
 }
+/* Mobile header improvements */
+@media (max-width: 600px) {
+  header .container {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .brand-group {
+    max-width: 100%;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .brand-group .profile-btn {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  nav {
+    max-width: 100%;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  nav a {
+    font-size: 14px;
+  }
+}
