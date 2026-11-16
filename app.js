@@ -60,6 +60,7 @@ if (typeof document !== "undefined") (function (cfg) {
 
   const opts = cfg.services.map((s) => '<option value="' + esc(s.id) + '">' + esc(s.name) + "</option>").join("");
   $("#calcService").innerHTML = opts;
+  
   $("#service").innerHTML = '<option value="">Select a service</option>' + opts;
 
   const byId = (id) => cfg.services.find((s) => s.id === id);
@@ -67,34 +68,54 @@ if (typeof document !== "undefined") (function (cfg) {
 const paymentMethod = $("#paymentMethod");
 
   if (paymentMethod) {
-    function updatePaymentDetails() {
-      const method = paymentMethod.value;
-      const details = $("#paymentDetails");
-      const number = $("#paymentNumber");
-      const transactionId = $("#transactionId");
+function updatePaymentDetails() {
+  const method = paymentMethod.value;
+  const details = $("#paymentDetails");
+  const number = $("#paymentNumber");
+  const amount = $("#paymentAmount");
+  const transactionId = $("#transactionId");
 
-      const prepaid = method === "bkash" || method === "nagad";
-      details.hidden = !prepaid;
-      transactionId.required = prepaid;
+  const prepaid = method === "bkash" || method === "nagad";
+  details.hidden = !prepaid;
+  transactionId.required = prepaid;
 
-if (method === "bkash") {
-        number.textContent =
-          "Please send money to this bKash number: " + cfg.payment.bkashNumber +
-          ". After payment, enter your Transaction ID below.";
-      } else if (method === "nagad") {
-        number.textContent =
-          "Please send money to this Nagad number: " + cfg.payment.nagadNumber +
-          ". After payment, enter your Transaction ID below.";
-      } else {
-        number.textContent = "";
-        transactionId.value = "";
-      }
-    }
-
-    paymentMethod.addEventListener("change", updatePaymentDetails);
-    updatePaymentDetails();
+  if (method === "bkash") {
+    number.textContent =
+      "Please send money to this bKash number: " +
+      cfg.payment.bkashNumber +
+      ". After payment, enter your Transaction ID below.";
+  } else if (method === "nagad") {
+    number.textContent =
+      "Please send money to this Nagad number: " +
+      cfg.payment.nagadNumber +
+      ". After payment, enter your Transaction ID below.";
+  } else {
+    number.textContent = "";
+    amount.textContent = "";
+    transactionId.value = "";
+    return;
   }
 
+  const service = byId($("#service").value);
+  const result = calcEstimate(service, $("#size").value);
+
+  if (!result.ok) {
+    amount.textContent = result.reason;
+    return;
+  }
+
+  const discount = result.total * 0.10;
+  const total = result.total - discount;
+
+  amount.textContent =
+    "Regular price: " + formatMoney(cfg, result.total) +
+    " | Prepaid discount (10%): -" + formatMoney(cfg, discount) +
+    " | Total amount to pay: " + formatMoney(cfg, total);
+}
+    paymentMethod.addEventListener("change", updatePaymentDetails);
+$("#service").addEventListener("change", updatePaymentDetails);
+$("#size").addEventListener("input", updatePaymentDetails);
+updatePaymentDetails();
 function updateCalc() {
   const s = byId($("#calcService").value);
   $("#calcSqftWrap").hidden = s && s.mode === "flat";
