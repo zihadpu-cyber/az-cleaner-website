@@ -49,6 +49,14 @@
         <label for="calcSqft">Property size (sq ft)</label>
         <input id="calcSqft" type="number" min="1" inputmode="numeric" placeholder="e.g. 1200">
       </div>
+  <div>
+  <label for="calcPaymentMethod">Payment Method</label>
+  <select id="calcPaymentMethod">
+    <option value="cash">Cash on Service — No Discount</option>
+    <option value="bkash">bKash Prepaid — 10% Off</option>
+    <option value="nagad">Nagad Prepaid — 10% Off</option>
+  </select>
+</div>
       <div id="calcResult" class="result" aria-live="polite"></div>
       <a id="calcBook" class="btn full" href="#book">Continue to booking</a>
     </div>
