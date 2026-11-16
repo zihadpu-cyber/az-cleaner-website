@@ -269,4 +269,30 @@ $("#waBtn").addEventListener("click", () => {
     $("#menuBtn").setAttribute("aria-expanded", open);
   });
   nav.addEventListener("click", (e) => { if (e.target.tagName === "A") { nav.classList.remove("open"); $("#menuBtn").setAttribute("aria-expanded", "false"); } });
+// Background music controls
+  const musicBtn = $("#musicBtn");
+  const backgroundMusic = $("#backgroundMusic");
+
+  if (musicBtn && backgroundMusic) {
+    backgroundMusic.volume = 0.25;
+
+    musicBtn.addEventListener("click", async () => {
+      if (backgroundMusic.paused) {
+        try {
+          await backgroundMusic.play();
+          musicBtn.textContent = "🔊";
+          musicBtn.setAttribute("aria-label", "Turn music off");
+          musicBtn.setAttribute("aria-pressed", "true");
+        } catch (error) {
+          musicBtn.textContent = "🔇";
+          musicBtn.setAttribute("aria-label", "Music could not start");
+        }
+      } else {
+        backgroundMusic.pause();
+        musicBtn.textContent = "🔇";
+        musicBtn.setAttribute("aria-label", "Turn music on");
+        musicBtn.setAttribute("aria-pressed", "false");
+      }
+    });
+  }
 })(SITE_CONFIG);
