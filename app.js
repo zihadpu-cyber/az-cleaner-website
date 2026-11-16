@@ -286,6 +286,7 @@ $("#waBtn").addEventListener("click", () => {
 
     $("#emailBtn").disabled = false;
   });
+  const nav = $("#nav");
   $("#menuBtn").addEventListener("click", () => {
     const open = nav.classList.toggle("open");
     $("#menuBtn").setAttribute("aria-expanded", open);
