@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Md. Zihad Hossen | Founder & CEO</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #ffffff;
+      color: #171717;
+      line-height: 1.7;
+    }
+
+    header {
+      padding: 18px 6%;
+      border-bottom: 1px solid #e5e5e5;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand {
+      color: #0f4c4a;
+      font-size: 21px;
+      font-weight: 800;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    nav a {
+      color: #333;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    nav .contact-btn {
+      border: 1px solid #0f4c4a;
+      padding: 8px 16px;
+      border-radius: 24px;
+      color: #0f4c4a;
+    }
+
+    .hero {
+      max-width: 1200px;
+      margin: auto;
+      padding: 75px 6% 55px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 55px;
+    }
+
+    .intro-label {
+      color: #86a927;
+      font-size: 34px;
+      font-weight: 700;
+    }
+
+    h1 {
+      font-size: clamp(36px, 4.5vw, 58px);
+      line-height: 1.15;
+      margin: 8px 0 20px;
+      letter-spacing: -1.5px;
+    }
+
+    .role {
+      color: #0f4c4a;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .description {
+      color: #626262;
+      font-size: 15px;
+      max-width: 540px;
+    }
+
+    .address {
+      margin-top: 20px;
+      color: #444;
+      font-size: 14px;
+    }
+
+    .photo-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(
+        circle,
+        #eff8dc 0%,
+        #f8fbf2 65%,
+        #ffffff 100%
+      );
+      border-radius: 48% 52% 48% 52%;
+      padding: 18px;
+    }
+
+    .photo-wrap img {
+      width: 100%;
+      max-width: 390px;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      object-position: center 25%;
+      border-radius: 48% 48% 45% 45%;
+      display: block;
+    }
+
+    .divider {
+      max-width: 1080px;
+      margin: 0 auto;
+      border: 0;
+      border-top: 1px solid #d6d6d6;
+    }
+
+    .about {
+      max-width: 1200px;
+      margin: auto;
+      padding: 55px 6% 80px;
+    }
+
+    .about h2 {
+      font-size: 30px;
+      margin-bottom: 18px;
+    }
+
+    .about h2 span {
+      color: #86a927;
+    }
+
+    .about p {
+      max-width: 1000px;
+      color: #424242;
+      font-size: 16px;
+      margin-bottom: 16px;
+    }
+
+    .vision {
+      margin-top: 32px;
+      padding: 24px;
+      border-left: 4px solid #86a927;
+      background: #f7faef;
+      border-radius: 0 10px 10px 0;
+    }
+
+    footer {
+      padding: 24px 6%;
+      text-align: center;
+      border-top: 1px solid #e5e5e5;
+      color: #666;
+      font-size: 13px;
+    }
+
+    footer a {
+      color: #0f4c4a;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    @media (max-width: 700px) {
+      header {
+        padding: 16px 5%;
+        flex-wrap: wrap;
+      }
+
+      nav {
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 45px;
+        gap: 35px;
+      }
+
+      .intro-label {
+        font-size: 27px;
+      }
+
+      h1 {
+        font-size: 40px;
+      }
+
+      .photo-wrap img {
+        max-width: 320px;
+      }
+
+      .about {
+        padding-top: 40px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <a class="brand" href="index.html">A To Z Cleaner</a>
+
+    <nav aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="#about">About</a>
+      <a class="contact-btn" href="index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <div class="intro-label">Hello, I'm 👋</div>
+
+        <h1>Md. Zihad Hossen</h1>
+
+        <p class="role">Founder &amp; CEO of A To Z Cleaner</p>
+
+        <p class="description">
+          I am currently pursuing a degree in Computer Science and
+          Engineering (CSE) at Presidency University. I have a strong
+          interest in entrepreneurship, technology, and business development.
+        </p>
+
+        <p class="address">
+          📍 Gulshan-2, Dhaka, Bangladesh
+        </p>
+      </div>
+
+      <div class="photo-wrap">
+        <img src="image.png"
+             alt="Md. Zihad Hossen, Founder and CEO of A To Z Cleaner">
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <section class="about" id="about">
+      <h2><span>About</span> Me</h2>
+
+      <p>
+        As the founder of A To Z Cleaner, my goal is to build a reliable
+        and professional cleaning service that makes everyday life easier
+        for individuals and businesses.
+      </p>
+
+      <p>
+        I believe in customer satisfaction, quality service, and building
+        long-term relationships through trust, honesty, and commitment.
+        I am passionate about learning, developing new ideas, and growing
+        a business that creates real value for customers.
+      </p>
+
+      <div class="vision">
+        <h2><span>My</span> Vision</h2>
+        <p>
+          To make professional cleaning services more accessible,
+          reliable, and convenient for everyone.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 A To Z Cleaner. All rights reserved.</p>
+    <p><a href="index.html">Back to Home</a></p>
+  </footer>
+
+</body>
+</html>
