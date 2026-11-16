@@ -64,6 +64,14 @@ if (typeof document !== "undefined") (function (cfg) {
   $("#calcService").innerHTML = opts;
   
   $("#service").innerHTML = '<option value="">Select a service</option>' + opts;
+try {
+  const selectedService = sessionStorage.getItem("selectedService");
+
+  if (selectedService && cfg.services.some((s) => s.id === selectedService)) {
+    $("#service").value = selectedService;
+    sessionStorage.removeItem("selectedService");
+  }
+} catch (e) {}
 
   const byId = (id) => cfg.services.find((s) => s.id === id);
 
