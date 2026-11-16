@@ -80,7 +80,10 @@ $("#serviceGrid").innerHTML = cfg.services.map((s) =>
   '<a class="btn" href="' + esc(s.id) +
   '.html">Details</a></div></article>'
 ).join("");
-  $("#calcService").innerHTML = opts;
+  const opts = cfg.services.map((s) =>
+  '<option value="' + esc(s.id) + '">' +
+  esc(s.name) + '</option>'
+).join("");
   
   $("#service").innerHTML = '<option value="">Select a service</option>' + opts;
 try {
