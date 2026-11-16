@@ -57,6 +57,8 @@ if (typeof document !== "undefined") (function (cfg) {
     '<article class="card"><span class="ico" aria-hidden="true">' + s.icon + "</span><h3>" + esc(s.name) +
     "</h3><p>" + esc(s.desc) + '</p><p class="price' + (priceLabel(cfg, s).includes("confirmed") ? " tbc" : "") + '">' +
     esc(priceLabel(cfg, s)) + '</p><a class="btn ghost" href="#book" data-pick="' + esc(s.id) + '">Book this</a></article>').join("");
+  '<a class="btn ghost" href="#book" data-pick="' + esc(s.id) + '">Book this</a> ' +
+'<a class="btn" href="' + esc(s.id) + '.html">Details</a></article>').join("");
 
   const opts = cfg.services.map((s) => '<option value="' + esc(s.id) + '">' + esc(s.name) + "</option>").join("");
   $("#calcService").innerHTML = opts;
