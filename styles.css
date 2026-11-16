@@ -69,27 +69,23 @@ footer{background:var(--teal2);color:#cfe3e0;padding:22px 0;font-size:.9rem}
   flex-shrink: 0;
 }
 
-.brand-group .profile-btn {
-  margin-left: 0;
-  background: #f5c518;
-  border: 1px solid #f5c518;
-  color: #0f4c4a;
-}
-.brand-group .logo img {
+.brand-group .logo {
   width: 150px;
-  height: 45px;
+  flex: 0 0 150px;
+}
+
+.brand-group .logo img {
+  width: 150px !important;
+  max-width: 150px !important;
+  height: 45px !important;
   object-fit: contain;
   display: block;
 }
 
-.brand-group {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-shrink: 0;
-}
-
 .brand-group .profile-btn {
   margin-left: 0;
   flex-shrink: 0;
+  background: #f5c518;
+  border: 1px solid #f5c518;
+  color: #0f4c4a;
 }
