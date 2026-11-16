@@ -12,7 +12,7 @@ const SITE_CONFIG = {
     phoneDisplay: "+8801625694567",   // TODO: shown on the page
     email: "zihad.pu@gmail.com",         // TODO
     address: "Your office address, Dhaka",
-    hours: "Daily, 8:00 am - 8:00 pm"
+    hours: "Daily,"Anytime""
   },
 
   whatsapp: {
