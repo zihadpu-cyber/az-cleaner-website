@@ -71,9 +71,30 @@ footer{background:var(--teal2);color:#cfe3e0;padding:22px 0;font-size:.9rem}
 
 .brand-group .profile-btn {
   margin-left: 0;
-  background: #f5c518;
-  border: 1px solid #f5c518;
-  color: #0f4c4a;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #0f6b66, #0b3736);
+  border: 2px solid #d5e3e0;
+  border-radius: 50px;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(15, 107, 102, 0.3);
+  transition: all 0.25s ease;
+}
+
+.brand-group .profile-btn:hover {
+  background: #0f4c4a;
+  box-shadow: 0 6px 20px rgba(15, 107, 102, 0.4);
+  transform: translateY(-2px);
+}
+
+.brand-group .profile-btn:active {
+  transform: translateY(0);
 }
 .brand-group .logo img {
   width: 150px;
