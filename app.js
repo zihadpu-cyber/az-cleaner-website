@@ -125,13 +125,20 @@ function updateCalc() {
       : "<span>No discount. Estimate only. " + esc(r.note) +
         " Final price confirmed by us.</span>");
 }
-  ["#calcService", "#calcSqft"].forEach((q) => $(q).addEventListener("input", updateCalc));
-  updateCalc();
+["#calcService", "#calcSqft", "#calcPaymentMethod"].forEach((q) =>
+  $(q).addEventListener("input", updateCalc)
+);
 
-  $("#calcBook").addEventListener("click", () => {
-    $("#service").value = $("#calcService").value;
-    if ($("#calcSqft").value) $("#size").value = $("#calcSqft").value;
-  });
+$("#calcBook").addEventListener("click", () => {
+  $("#service").value = $("#calcService").value;
+
+  if ($("#calcSqft").value) {
+    $("#size").value = $("#calcSqft").value;
+  }
+
+  $("#paymentMethod").value = $("#calcPaymentMethod").value;
+  $("#paymentMethod").dispatchEvent(new Event("change"));
+});
   document.addEventListener("click", (e) => {
     const p = e.target.closest("[data-pick]");
     if (p) $("#service").value = p.dataset.pick;
