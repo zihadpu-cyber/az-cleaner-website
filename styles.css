@@ -120,7 +120,7 @@ footer{background:var(--teal2);color:#cfe3e0;padding:22px 0;font-size:.9rem}
   overflow: hidden;
   background-image:
     linear-gradient(
-      rgba(255, 255, 255, 0.25),
+      rgba(255, 255, 255, 0.20),
       rgba(255, 255, 255, 0.35)
     ),
     var(--service-image);
