@@ -52,15 +52,34 @@ if (typeof document !== "undefined") (function (cfg) {
   $("#hours").textContent = cfg.contact.hours;
   $("#year").textContent = new Date().getFullYear();
   $("#trust").innerHTML = cfg.trust.map((t) => "<li>" + esc(t) + "</li>").join("");
- $("#serviceGrid").innerHTML = cfg.services.map((s) =>
-  '<article class="card"><span class="ico" aria-hidden="true">' + s.icon + "</span><h3>" + esc(s.name) +
-  "</h3><p>" + esc(s.desc) + '</p><p class="price' + (priceLabel(cfg, s).includes("confirmed") ? " tbc" : "") + '">' +
-  esc(priceLabel(cfg, s)) + '</p>' +
+const serviceImages = {
+  "home-premium": "premium residential.jpeg",
+  "home-standard": "standard residential.jpeg",
+  "pest-control": "pest-control.jpeg",
+  "termite-control": "termite control.jpeg",
+  "move": "move-in.jpeg",
+  "kitchen-bath": "kitchen & bathroom.jpeg",
+  "sofa-carpet": "sofa,carpet & mattress.jpeg",
+  "office": "office & commercial.jpeg",
+  "post-construction": "post-construction.jpeg",
+  "glass": "window.jpeg"
+};
+
+$("#serviceGrid").innerHTML = cfg.services.map((s) =>
+  '<article class="card service-card" style="--service-image:url(&quot;' +
+  esc(serviceImages[s.id] || "") + '&quot;)">' +
+  '<span class="ico" aria-hidden="true">' + s.icon + "</span>" +
+  "<h3>" + esc(s.name) + "</h3>" +
+  "<p>" + esc(s.desc) + "</p>" +
+  '<p class="price' +
+  (priceLabel(cfg, s).includes("confirmed") ? " tbc" : "") +
+  '">' + esc(priceLabel(cfg, s)) + "</p>" +
   '<div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:10px">' +
-  '<a class="btn ghost" href="#book" data-pick="' + esc(s.id) + '">Book this</a>' +
-  '<a class="btn" href="' + esc(s.id) + '.html">Details</a></div></article>'
+  '<a class="btn ghost" href="#book" data-pick="' + esc(s.id) +
+  '">Book this</a>' +
+  '<a class="btn" href="' + esc(s.id) +
+  '.html">Details</a></div></article>'
 ).join("");
-  const opts = cfg.services.map((s) => '<option value="' + esc(s.id) + '">' + esc(s.name) + "</option>").join("");
   $("#calcService").innerHTML = opts;
   
   $("#service").innerHTML = '<option value="">Select a service</option>' + opts;
