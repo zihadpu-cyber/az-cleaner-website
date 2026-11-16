@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0f4c4a">
+  <meta name="description" content="Learn about A To Z Cleaner's pest control service in Dhaka.">
+  <title>Pest Control | A To Z Cleaner</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .details-page { max-width: 900px; margin: auto; padding: 32px 20px 60px; }
+    .details-page img { width: 100%; max-height: 420px; object-fit: cover; border-radius: 16px; }
+    .details-page h1 { color: #0f4c4a; }
+    .details-page li { margin: 10px 0; }
+    .details-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap bar">
+      <a class="logo" href="index.html">
+        <span>A To Z Cleaner</span>
+      </a>
+      <nav aria-label="Main">
+        <a href="index.html#services">All Services</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="details-page">
+    <p><a href="index.html#services">← Back to Services</a></p>
+
+    <h1>Professional Pest Control</h1>
+    <p>Protect your home and workplace from common pests with a treatment plan suited to the property and pest problem.</p>
+
+    <img
+      src="https://images.unsplash.com/photo-1632935190508-b8f2b1c7e5c1?auto=format&fit=crop&w=1200&q=80"
+      alt="Professional pest control service"
+      onerror="this.style.display='none'">
+
+    <h2>How Our Pest Control Service Works</h2>
+    <ol>
+      <li><strong>Initial assessment:</strong> We discuss the pest problem and affected areas.</li>
+      <li><strong>Treatment planning:</strong> We select an appropriate method based on the pest and property.</li>
+      <li><strong>Targeted treatment:</strong> Treatment is carried out in the agreed areas using suitable products and procedures.</li>
+      <li><strong>Safety guidance:</strong> We explain any precautions, ventilation requirements and re-entry instructions applicable to the treatment.</li>
+      <li><strong>After-service advice:</strong> We provide practical steps to help reduce future pest problems.</li>
+    </ol>
+
+    <h2>What This Service Can Address</h2>
+    <ul>
+      <li>Cockroaches</li>
+      <li>Ants and other crawling insects</li>
+      <li>Mosquitoes and selected flying insects</li>
+      <li>Other pests, subject to assessment</li>
+    </ul>
+
+    <h2>Before the Service</h2>
+    <p>Please tell us which pests you have noticed and where they appear. Follow the specific preparation and safety instructions provided before treatment.</p>
+
+    <h2>Pricing</h2>
+    <p>Our website currently lists a rate of ৳4 per sq ft. The final price and any minimum charge must be confirmed with our team before booking.</p>
+
+    <div class="details-actions">
+      <a class="btn" href="index.html#book" id="bookPest">Book Now</a>
+      <a class="btn ghost" href="index.html#services">Explore Other Services</a>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      &copy; <span id="year"></span> A To Z Cleaner. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    document.getElementById("bookPest").addEventListener("click", function () {
+      try {
+        sessionStorage.setItem("selectedService", "pest-control");
+      } catch (e) {}
+    });
+  </script>
+</body>
+</html>
