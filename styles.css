@@ -154,3 +154,16 @@ footer{background:var(--teal2);color:#cfe3e0;padding:22px 0;font-size:.9rem}
 .grid .service-card .btn {
   font-weight: 700;
 }
+/* Green Book This button */
+.grid .service-card .btn.ghost {
+  background-color: #16834a;
+  color: #ffffff;
+  border: 1px solid #16834a;
+  font-weight: 700;
+}
+
+.grid .service-card .btn.ghost:hover {
+  background-color: #106638;
+  border-color: #106638;
+  color: #ffffff;
+}
