@@ -100,10 +100,43 @@
     document.querySelector("[data-brand]").textContent =
       SITE_CONFIG.brand.name;
 
-    document.getElementById("agreeBtn").addEventListener("click", function () {
-      document.getElementById("policyStatus").textContent =
-        "পরবর্তী ধাপের সংযোগ এখনো সেটআপ করা হয়নি।";
-    });
+document.getElementById("agreeBtn").addEventListener("click", function () {
+  const status = document.getElementById("policyStatus");
+
+  try {
+    const saved = sessionStorage.getItem("pendingCleanerBooking");
+
+    if (!saved) {
+      status.textContent =
+        "Booking details not found. Please return and fill the booking form.";
+      return;
+    }
+
+    const d = JSON.parse(saved);
+    const cfg = SITE_CONFIG;
+
+    const lines = [
+      "Hello " + cfg.brand.name + ", I would like to book a cleaning.",
+      "Name: " + d.name,
+      "Phone: " + d.phone,
+      "Address: " + d.address,
+      "Service: " + d.service,
+      "Property size: " + d.size + " sq ft",
+      "Preferred date: " + d.date,
+      "Payment method: " + d.paymentMethod,
+      ...(d.transactionId ? ["Transaction ID: " + d.transactionId] : [])
+    ];
+
+    const url =
+      "https://wa.me/" + cfg.whatsapp.number +
+      "?text=" + encodeURIComponent(lines.join("\n"));
+
+    window.location.href = url;
+  } catch (error) {
+    status.textContent =
+      "Something went wrong. Please return and try again.";
+  }
+});
 
     document.getElementById("cancelBtn").addEventListener("click", function () {
       window.location.href = "index.html#book";
