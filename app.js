@@ -204,29 +204,101 @@ $("#calcBook").addEventListener("click", () => {
     }
   const status = (msg, bad) => { const el = $("#status"); el.textContent = msg; el.className = bad ? "err" : "ok"; };
 
+ let pendingBooking = null;
+
+  const policyModal = $("#cancellationPolicy");
+
+  function requestBooking(method) {
+    const data = getData();
+    if (!data) return;
+
+    pendingBooking = { method, data };
+    policyModal.hidden = false;
+  }
+
   $("#waBtn").addEventListener("click", () => {
-    const d = getData(); if (!d) return;
-    window.open(buildWhatsAppUrl(cfg, d), "_blank", "noopener");
-    status("WhatsApp opened with your details. Press send in WhatsApp to complete the booking request.");
+    requestBooking("whatsapp");
   });
 
-  $("#emailBtn").addEventListener("click", async () => {
-    const d = getData(); if (!d) return;
-    $("#emailBtn").disabled = true; status("Sending...");
+  $("#emailBtn").addEventListener("click", () => {
+    requestBooking("email");
+  });
+
+  $("#cancelPolicyBtn").addEventListener("click", () => {
+    policyModal.hidden = true;
+    pendingBooking = null;
+  });
+
+  $("#agreePolicyBtn").addEventListener("click", async () => {
+    if (!pendingBooking) return;
+
+    const booking = pendingBooking;
+    pendingBooking = null;
+    policyModal.hidden = true;
+
+    if (booking.method === "whatsapp") {
+      window.open(
+        buildWhatsAppUrl(cfg, booking.data),
+        "_blank",
+        "noopener"
+      );
+
+      status(
+        "WhatsApp opened. Press Send in WhatsApp to submit your booking."
+      );
+      return;
+    }
+
+    $("#emailBtn").disabled = true;
+    status("Sending booking request...");
+
     try {
-      const res = await fetch(cfg.emailForm.endpoint, { method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({ access_key: cfg.emailForm.accessKey, subject: "New cleaning booking: " + d.service,
-          from_name: cfg.brand.name, name: d.name, phone: d.phone, address: d.address, service: d.service,
-          property_size_sqft: d.size, preferred_date: d.date }) });
-      const j = await res.json();
-      if (res.ok && j.success) { status("Booking request sent. We will contact you to confirm."); $("#bookForm").reset(); }
-      else status("Could not send your request. Please use WhatsApp or call us.", true);
-    } catch (err) { status("Could not send your request. Please use WhatsApp or call us.", true); }
+      const d = booking.data;
+
+      const res = await fetch(cfg.emailForm.endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify({
+          access_key: cfg.emailForm.accessKey,
+          subject: "New cleaning booking: " + d.service,
+          from_name: cfg.brand.name,
+          name: d.name,
+          phone: d.phone,
+          address: d.address,
+          service: d.service,
+          property_size_sqft: d.size,
+          preferred_date: d.date,
+          payment_method: d.paymentMethod,
+          transaction_id: d.transactionId,
+          cancellation_policy_accepted: true,
+          cancellation_policy_version: "2026-11-17"
+        })
+      });
+
+      const result = await res.json();
+
+      if (res.ok && result.success) {
+        status("Booking request sent. We will contact you to confirm.");
+        $("#bookForm").reset();
+        $("#paymentMethod").dispatchEvent(new Event("change"));
+      } else {
+        status(
+          "Could not send your request. Please try WhatsApp or call us.",
+          true
+        );
+      }
+    } catch (error) {
+      status(
+        "Could not send your request. Please try WhatsApp or call us.",
+        true
+      );
+    }
+
     $("#emailBtn").disabled = false;
   });
-
-  const nav = $("#nav");
   $("#menuBtn").addEventListener("click", () => {
     const open = nav.classList.toggle("open");
     $("#menuBtn").setAttribute("aria-expanded", open);
