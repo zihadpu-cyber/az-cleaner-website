@@ -204,57 +204,30 @@ $("#calcBook").addEventListener("click", () => {
     }
   const status = (msg, bad) => { const el = $("#status"); el.textContent = msg; el.className = bad ? "err" : "ok"; };
 
- let pendingBooking = null;
-
-  const policyModal = $("#cancellationPolicy");
-
-  function requestBooking(method) {
+$("#waBtn").addEventListener("click", () => {
     const data = getData();
     if (!data) return;
 
-    pendingBooking = { method, data };
-    policyModal.hidden = false;
-  }
-
-  $("#waBtn").addEventListener("click", () => {
-    requestBooking("whatsapp");
-  });
-
-  $("#emailBtn").addEventListener("click", () => {
-    requestBooking("email");
-  });
-
-  $("#cancelPolicyBtn").addEventListener("click", () => {
-    policyModal.hidden = true;
-    pendingBooking = null;
-  });
-
-  $("#agreePolicyBtn").addEventListener("click", async () => {
-    if (!pendingBooking) return;
-
-    const booking = pendingBooking;
-    pendingBooking = null;
-    policyModal.hidden = true;
-
-    if (booking.method === "whatsapp") {
-      window.open(
-        buildWhatsAppUrl(cfg, booking.data),
-        "_blank",
-        "noopener"
+    try {
+      sessionStorage.setItem(
+        "pendingCleanerBooking",
+        JSON.stringify(data)
       );
-
-      status(
-        "WhatsApp opened. Press Send in WhatsApp to submit your booking."
-      );
-      return;
+      sessionStorage.setItem("bookingMethod", "whatsapp");
+      window.location.href = "agree-policy.html";
+    } catch (error) {
+      status("Could not save booking details. Please try again.", true);
     }
+  });
+
+  $("#emailBtn").addEventListener("click", async () => {
+    const data = getData();
+    if (!data) return;
 
     $("#emailBtn").disabled = true;
     status("Sending booking request...");
 
     try {
-      const d = booking.data;
-
       const res = await fetch(cfg.emailForm.endpoint, {
         method: "POST",
         headers: {
@@ -263,18 +236,16 @@ $("#calcBook").addEventListener("click", () => {
         },
         body: JSON.stringify({
           access_key: cfg.emailForm.accessKey,
-          subject: "New cleaning booking: " + d.service,
+          subject: "New cleaning booking: " + data.service,
           from_name: cfg.brand.name,
-          name: d.name,
-          phone: d.phone,
-          address: d.address,
-          service: d.service,
-          property_size_sqft: d.size,
-          preferred_date: d.date,
-          payment_method: d.paymentMethod,
-          transaction_id: d.transactionId,
-          cancellation_policy_accepted: true,
-          cancellation_policy_version: "2026-11-17"
+          name: data.name,
+          phone: data.phone,
+          address: data.address,
+          service: data.service,
+          property_size_sqft: data.size,
+          preferred_date: data.date,
+          payment_method: data.paymentMethod,
+          transaction_id: data.transactionId
         })
       });
 
@@ -285,16 +256,10 @@ $("#calcBook").addEventListener("click", () => {
         $("#bookForm").reset();
         $("#paymentMethod").dispatchEvent(new Event("change"));
       } else {
-        status(
-          "Could not send your request. Please try WhatsApp or call us.",
-          true
-        );
+        status("Could not send your request. Please try WhatsApp or call us.", true);
       }
     } catch (error) {
-      status(
-        "Could not send your request. Please try WhatsApp or call us.",
-        true
-      );
+      status("Could not send your request. Please try WhatsApp or call us.", true);
     }
 
     $("#emailBtn").disabled = false;
