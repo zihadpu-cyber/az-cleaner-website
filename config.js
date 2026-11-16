@@ -11,7 +11,7 @@ const SITE_CONFIG = {
   contact: {
     phoneDisplay: "+8801625694567",   // TODO: shown on the page
     email: "zihad.pu@gmail.com",// TODO
-     hours: "Daily,"Anytime"",
+     hours: "Daily,11am-11pm",
     address: " "
     
   },
