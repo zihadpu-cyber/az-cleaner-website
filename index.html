@@ -17,6 +17,12 @@
       <span data-brand>Brand</span>
     </a>
     <button id="menuBtn" class="menu" aria-expanded="false" aria-controls="nav">Menu</button>
+    <button id="musicBtn" type="button"
+        aria-label="Turn music on"
+        aria-pressed="false"
+        style="border:1px solid #d5e3e0;border-radius:50%;width:44px;height:44px;background:#fff;cursor:pointer;font-size:20px;">
+  🔇
+</button>
     <nav id="nav" aria-label="Main">
       <a href="#services">Services</a><a href="#estimate">Estimate</a><a href="#book">Book</a><a href="#contact">Contact</a>
    <a href="#policy">Policy</a>
@@ -138,6 +144,10 @@
 <footer><div class="wrap">&copy; <span id="year"></span> <span data-brand>Brand</span>. All rights reserved.</div></footer>
 
 <noscript><p class="wrap">Please enable JavaScript to see services and book online.</p></noscript>
+      <audio id="backgroundMusic"
+       src="az-cleaner-background-music.wav"
+       loop
+       preload="auto"></audio>
 <script src="config.js"></script>
 <script src="app.js"></script>
 </body>
