@@ -62,3 +62,13 @@ footer{background:var(--teal2);color:#cfe3e0;padding:22px 0;font-size:.9rem}
   object-fit: contain;
   display: block;
 }
+.profile-btn {
+  margin-left: -20px;
+  padding: 8px 12px;
+  border: 1px solid #0f4c4a;
+  border-radius: 8px;
+  color: #0f4c4a;
+  text-decoration: none;
+  font-weight: 600;
+  white-space: nowrap;
+}
