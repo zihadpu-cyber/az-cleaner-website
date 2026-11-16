@@ -56,12 +56,12 @@ footer{background:var(--teal2);color:#cfe3e0;padding:22px 0;font-size:.9rem}
  .two{grid-template-columns:1fr}.section,.band{padding:44px 20px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-.logo img {
-  width: 150px;
-  height: 45px;
-  object-fit: contain;
-  display: block;
-}
+<div class="brand-group">
+  <a class="logo" href="#top" aria-label="Home">
+    <img src="az-cleaner-logo.png" alt="A To Z Cleaner Logo">
+  </a>
+  <a class="profile-btn" href="founder.html">Profile</a>
+</div>
 .brand-group {
   display: flex;
   align-items: center;
