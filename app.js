@@ -77,8 +77,13 @@ $("#serviceGrid").innerHTML = cfg.services.map((s) =>
   '<div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:10px">' +
   '<a class="btn ghost" href="#book" data-pick="' + esc(s.id) +
   '">Book this</a>' +
-  '<a class="btn" href="' + esc(s.id) +
-  '.html">Details</a></div></article>'
+'<a class="btn" href="' + esc(({
+  "office": "office-commercial.html",
+  "kitchen-bath": "kitchen-bathroom.html",
+  "glass": "window-glass-cleaning.html",
+  "post-construction": "post-construction-cleaning.html"
+}[s.id] || (s.id + ".html"))) +
+'">Details</a></div></article>'
 ).join("");
   const opts = cfg.services.map((s) =>
   '<option value="' + esc(s.id) + '">' +
