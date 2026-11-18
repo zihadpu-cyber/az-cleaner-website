@@ -87,7 +87,7 @@ payment: {
        { id: "move", name: "Move-in / move-out cleaning", icon: "📦",
      desc:"This is not availabe now",
       mode: "flat",
-      flatPrice: },
+      flatPrice:null},
   ],
      
 
