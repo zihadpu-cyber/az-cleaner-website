@@ -92,6 +92,11 @@ $("#serviceGrid").innerHTML = cfg.services.map((s) =>
   
   $("#calcService").innerHTML =
   '<option value="">Select a service</option>' + opts;
+
+  // Populate the booking form's Service Type dropdown as well.
+  $("#service").innerHTML =
+  '<option value="">Select a service</option>' + opts;
+
 try {
   const selectedService = sessionStorage.getItem("selectedService");
 
