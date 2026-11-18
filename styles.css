@@ -260,4 +260,30 @@ body {
     font-size: 14px;
   }
 }
+
 \n@media (prefers-reduced-motion: reduce) {\n  .grid .service-card { transition: none; }\n  .grid .service-card:hover { transform: none; }\n}\n
+.why-btn {
+    position: absolute;
+    top: 20%;
+    right: 6%;
+
+    background: #ffc107;
+    color: #003d3a;
+
+    padding: 15px 30px;
+    border-radius: 30px;
+
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+
+    border: 2px solid white;
+    transition: 0.3s;
+    z-index: 10;
+}
+
+.why-btn:hover {
+    background: #003d3a;
+    color: white;
+    transform: scale(1.05);
+}
