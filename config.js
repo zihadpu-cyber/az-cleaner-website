@@ -67,30 +67,27 @@ payment: {
   rate: 13,
   minCharge: null
 },
-    { id: "move", name: "Move-in / move-out cleaning", icon: "📦",
-      mode: "flat",
-      flatPrice: 1300 },
+         { id: "office", name: "Office & commercial", icon: "🏢",
+      desc: "Daily or weekly cleaning for offices, shops, clinics and restaurants.",
+      mode: "sqft", rate: 5.5, minCharge: null },
+  
     { id: "kitchen-bath", name: "Kitchen & bathroom cleaning", icon: "🚿",
       desc: "Grease, limescale and stain removal. Priced per job, not by area.",
       mode: "flat", flatPrice: null },
     { id: "sofa-carpet", name: "Sofa, carpet & mattress", icon: "🛋️",
       desc: "Shampoo and extraction cleaning for fabrics and soft furnishings.",
-       mode: "sqft",rate: null, minCharge:null  },
-    { id: "office", name: "Office & commercial", icon: "🏢",
-      desc: "Daily or weekly cleaning for offices, shops, clinics and restaurants.",
-      mode: "sqft", rate: null, minCharge: null },
+       mode: "flat", flatPrice: null },
+
     { id: "post-construction", name: "Post-construction cleaning", icon: "🧱",
       desc: "Dust, cement and paint residue removed after renovation or building work.",
-      mode: "sqft", rate: null, minCharge: null },
+      mode: "flat", flatPrice: null },
     { id: "glass", name: "Window & glass cleaning", icon: "🪟",
       desc: "Interior and exterior glass, frames and balcony railings.",
       mode: "flat", flatPrice: null },
-{
-  id: "washroom",
-  name: "Washroom Deep Cleaning",
-  mode: "flat",
-  flatPrice: 1250
-},
+       { id: "move", name: "Move-in / move-out cleaning", icon: "📦",
+     desc:"This is not availabe now",
+      mode: "flat",
+      flatPrice: },
   ],
      
 
