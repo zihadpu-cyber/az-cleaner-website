@@ -85,7 +85,8 @@ $("#serviceGrid").innerHTML = cfg.services.map((s) =>
   esc(s.name) + '</option>'
 ).join("");
   
-  $("#service").innerHTML = '<option value="">Select a service</option>' + opts;
+  $("#calcService").innerHTML =
+  '<option value="">Select a service</option>' + opts;
 try {
   const selectedService = sessionStorage.getItem("selectedService");
 
@@ -181,6 +182,7 @@ function updateCalc() {
 ["#calcService", "#calcSqft", "#calcPaymentMethod"].forEach((q) =>
   $(q).addEventListener("input", updateCalc)
 );
+    updateCalc();
 
 $("#calcBook").addEventListener("click", () => {
   $("#service").value = $("#calcService").value;
