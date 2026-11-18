@@ -74,8 +74,10 @@ payment: {
       desc: "Grease, limescale and stain removal. Priced per job, not by area.",
       mode: "flat", flatPrice: null },
     { id: "sofa-carpet", name: "Sofa, carpet & mattress", icon: "🛋️",
-      desc: "Shampoo and extraction cleaning for fabrics and soft furnishings.",
-       mode: "sqft",rate: null, minCharge: 1250 },
+      desc: "Shampoo and extraction cleaning for fabrics and soft furnishings.
+         
+   Price:1300 tk",
+       mode: "sqft",rate: null, minCharge:  },null
     { id: "office", name: "Office & commercial", icon: "🏢",
       desc: "Daily or weekly cleaning for offices, shops, clinics and restaurants.",
       mode: "sqft", rate: null, minCharge: null },
