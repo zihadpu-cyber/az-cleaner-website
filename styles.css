@@ -14,7 +14,7 @@ nav{display:flex;gap:22px}nav a{text-decoration:none;color:var(--ink);font-weigh
 .menu{display:none;background:none;border:1px solid var(--line);border-radius:8px;padding:8px 14px;font:inherit;cursor:pointer}
 .hero{
   background:
-    linear-gradient(rgba(11,55,54,.65),rgba(11,55,54,.05)),
+    linear-gradient(rgba(11,55,54,.65),rgba(11,55,54,.25)),
     url("cleaning.png") center/cover no-repeat;
   color:#fff;
   padding:56px 0;
@@ -118,7 +118,10 @@ footer{background:var(--teal2);color:#cfe3e0;padding:22px 0;font-size:.9rem}
 .grid .service-card {
   position: relative;
   overflow: hidden;
-  background-image: var(--service-image);
+background-image: linear-gradient(
+  rgba(0, 0, 0, 0.25),
+  rgba(0, 0, 0, 0.25)
+), var(--service-image);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
