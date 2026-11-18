@@ -85,7 +85,7 @@ payment: {
       mode: "sqft", rate: null, minCharge: null },
     { id: "glass", name: "Window & glass cleaning", icon: "🪟",
       desc: "Interior and exterior glass, frames and balcony railings.",
-      mode: "flat", flatPrice: null }
+      mode: "flat", flatPrice: null },
 {
   id: "washroom",
   name: "Washroom Deep Cleaning",
