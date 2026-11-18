@@ -68,9 +68,8 @@ payment: {
   minCharge: null
 },
     { id: "move", name: "Move-in / move-out cleaning", icon: "📦",
-      desc: "Get an empty or newly handed-over property ready for the next occupant.",
-     
-      mode: "sqft", rate: null, minCharge: null },
+      mode: "flat",
+      flatPrice: 1300 },
     { id: "kitchen-bath", name: "Kitchen & bathroom cleaning", icon: "🚿",
       desc: "Grease, limescale and stain removal. Priced per job, not by area.",
       mode: "flat", flatPrice: null },
