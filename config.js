@@ -73,21 +73,22 @@ payment: {
   
     { id: "kitchen-bath", name: "Kitchen & bathroom cleaning", icon: "🚿",
       desc: "Grease, limescale and stain removal. Priced per job, not by area.",
-      mode: "flat", flatPrice: null },
-    { id: "sofa-carpet", name: "Sofa, carpet & mattress", icon: "🛋️",
-      desc: "Shampoo and extraction cleaning for fabrics and soft furnishings.",
-       mode: "flat", flatPrice: null },
+      mode: "flat", flatPrice: 3000 },
+         { id: "glass", name: "Window & glass cleaning", icon: "🪟",
+      desc: "Interior and exterior glass, frames and balcony railings.",
+      mode: "flat", flatPrice: 1000 },
 
     { id: "post-construction", name: "Post-construction cleaning", icon: "🧱",
       desc: "Dust, cement and paint residue removed after renovation or building work.",
       mode: "flat", flatPrice: null },
-    { id: "glass", name: "Window & glass cleaning", icon: "🪟",
-      desc: "Interior and exterior glass, frames and balcony railings.",
-      mode: "flat", flatPrice: null },
+
        { id: "move", name: "Move-in / move-out cleaning", icon: "📦",
      desc:"This is not availabe now",
       mode: "flat",
       flatPrice:null},
+         { id: "sofa-carpet", name: "Sofa, carpet & mattress", icon: "🛋️",
+      desc: "Shampoo and extraction cleaning for fabrics and soft furnishings.",
+       mode: "flat", flatPrice: null },
   ],
      
 
