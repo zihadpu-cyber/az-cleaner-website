@@ -114,49 +114,63 @@ footer{background:var(--teal2);color:#cfe3e0;padding:22px 0;font-size:.9rem}
   margin-left: 0;
   flex-shrink: 0;
 }
-/* Service cards: clear photos and readable text */
+/* Service cards: premium photo treatment with balanced brightness */
 .grid .service-card {
   position: relative;
   overflow: hidden;
-background-image: linear-gradient(
-  rgba(0, 0, 0, 0.35),
-  rgba(0, 0, 0, 0.35)
-), var(--service-image);
+  background-image:
+    linear-gradient(180deg, rgba(11, 55, 54, 0.46) 0%, rgba(11, 55, 54, 0.24) 48%, rgba(0, 0, 0, 0.52) 100%),
+    var(--service-image);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 300px;
-  color: #111;
+  color: #fff;
+  border: 1px solid rgba(213, 227, 224, 0.8);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(11, 55, 54, 0.14);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.grid .service-card:hover {
+  box-shadow: 0 14px 32px rgba(11, 55, 54, 0.22);
+  transform: translateY(-3px);
 }
 
 .grid .service-card h3,
 .grid .service-card p {
-  color: #111;
-  font-family: Arial, sans-serif;
+  color: #fff;
+  font-family: "Segoe UI", system-ui, sans-serif;
   font-weight: 600;
   line-height: 1.45;
-  background: rgba(255, 255, 255, 0.2);
-  padding: 5px 8px;
-  border-radius: 7px;
+  background: rgba(11, 55, 54, 0.62);
+  padding: 6px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
   width: fit-content;
   max-width: 100%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
 }
 
 .grid .service-card h3 {
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 750;
 }
 
 .grid .service-card .price {
+  color: #ffe16a;
   font-size: 16px;
   font-weight: 800;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 
 .grid .service-card .btn {
   font-weight: 700;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.16);
 }
+
 /* Green Book This button */
 .grid .service-card .btn.ghost {
   background-color: #16834a;
@@ -246,3 +260,4 @@ body {
     font-size: 14px;
   }
 }
+\n@media (prefers-reduced-motion: reduce) {\n  .grid .service-card { transition: none; }\n  .grid .service-card:hover { transform: none; }\n}\n
