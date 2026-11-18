@@ -75,7 +75,7 @@ payment: {
       mode: "flat", flatPrice: null },
     { id: "sofa-carpet", name: "Sofa, carpet & mattress", icon: "🛋️",
       desc: "Shampoo and extraction cleaning for fabrics and soft furnishings.",
-      rate: 1250, minCharge: null },
+       mode: "sqft",rate: null, minCharge: 1250 },
     { id: "office", name: "Office & commercial", icon: "🏢",
       desc: "Daily or weekly cleaning for offices, shops, clinics and restaurants.",
       mode: "sqft", rate: null, minCharge: null },
