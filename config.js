@@ -91,7 +91,7 @@ payment: {
   name: "Washroom Deep Cleaning",
   mode: "flat",
   flatPrice: 1250
-}
+},
   ],
      
 
