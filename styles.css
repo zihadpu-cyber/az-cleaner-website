@@ -321,3 +321,14 @@ body {
         font-size: 13px;
     }
 }
+/* Why Choose Us Button - Mobile Fix */
+@media (max-width: 768px) {
+    .why-choose-btn {
+        display: inline-flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: relative;
+        z-index: 99;
+        margin-top: 15px;
+    }
+}
