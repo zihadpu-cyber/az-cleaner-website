@@ -56,12 +56,6 @@ footer{background:var(--teal2);color:#cfe3e0;padding:22px 0;font-size:.9rem}
  .two{grid-template-columns:1fr}.section,.band{padding:44px 20px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-<div class="brand-group">
-  <a class="logo" href="#top" aria-label="Home">
-    <img src="az-cleaner-logo.png" alt="A To Z Cleaner Logo">
-  </a>
-  <a class="profile-btn" href="founder.html">Profile</a>
-</div>
 .brand-group {
   display: flex;
   align-items: center;
@@ -321,26 +315,164 @@ body {
         font-size: 13px;
     }
 }
-/* Why Choose Us Button - Mobile Fix */
-@media (max-width: 768px) {
-    .why-choose-btn {
-        display: inline-flex !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        position: relative;
-        z-index: 99;
-        margin-top: 15px;
-    }
-}
 
 
-/* Why Choose Us: show inside the mobile navigation only */
+/* Desktop-style responsive mobile layout */
 .mobile-why-link {
-    display: none;
+  display: none;
 }
 
 @media (max-width: 820px) {
-    nav .mobile-why-link {
-        display: block;
-    }
+  /* Keep the desktop hero button on desktop; use the menu link on mobile. */
+  .hero > .why-btn {
+    display: none;
+  }
+
+  nav .mobile-why-link {
+    display: block;
+  }
+
+  .bar {
+    min-height: 60px;
+    gap: 8px;
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .brand-group {
+    min-width: 0;
+    gap: 7px;
+  }
+
+  .brand-group .logo img {
+    width: 112px;
+    height: 40px;
+  }
+
+  .brand-group .profile-btn {
+    padding: 8px 11px;
+    font-size: 13px;
+    gap: 6px;
+  }
+
+  .menu {
+    padding: 7px 10px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+
+  #musicBtn {
+    width: 38px !important;
+    height: 38px !important;
+    flex: 0 0 38px;
+    font-size: 17px !important;
+  }
+
+  nav {
+    z-index: 20;
+    max-height: calc(100vh - 64px);
+    overflow-y: auto;
+    box-shadow: 0 10px 22px rgba(11, 55, 54, 0.12);
+  }
+
+  nav a {
+    display: block;
+    padding: 11px 4px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  nav a:last-child {
+    border-bottom: 0;
+  }
+
+  .hero {
+    padding: 38px 0;
+  }
+
+  .hero-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .hero-grid > div,
+  .wrap,
+  .card,
+  .calc {
+    min-width: 0;
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 8vw, 2.8rem);
+  }
+
+  .hero .btn {
+    margin: 4px 4px 4px 0;
+  }
+
+  .section,
+  .band {
+    padding: 42px 16px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+    gap: 16px;
+  }
+
+  .grid .service-card {
+    min-height: 280px;
+  }
+
+  .calc {
+    margin: 0 12px;
+    padding: 18px;
+  }
+
+  .two {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .actions .btn {
+    flex: 1 1 100%;
+    min-height: 46px;
+  }
+}
+
+@media (max-width: 420px) {
+  .bar {
+    gap: 6px;
+  }
+
+  .brand-group .logo img {
+    width: 88px;
+  }
+
+  .brand-group .profile-btn {
+    padding: 7px 8px;
+    font-size: 12px;
+  }
+
+  .menu {
+    padding: 6px 8px;
+    font-size: 13px;
+  }
+
+  .hero {
+    padding: 30px 0;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.8rem, 8vw, 2.25rem);
+  }
+
+  .hero .btn {
+    width: 100%;
+    text-align: center;
+    margin: 5px 0;
+  }
+
+  .section,
+  .band {
+    padding: 34px 14px;
+  }
 }
