@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0f4c4a">
+  <title>Tic Tac Toe | A to Z Cleaner</title>
+  <style>
+    :root {
+      --teal: #0f4c4a;
+      --teal-dark: #0b3736;
+      --mist: #eef5f3;
+      --sun: #f5c518;
+      --ink: #183331;
+      --muted: #657875;
+      --line: #dce8e5;
+      --white: #fff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; padding: 24px 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: Arial, Helvetica, sans-serif; color: var(--ink);
+      background: linear-gradient(135deg, #eef5f3, #dcebe7);
+    }
+    .game-shell {
+      width: min(100%, 480px); background: var(--white);
+      border: 1px solid var(--line); border-radius: 22px;
+      padding: clamp(20px, 5vw, 34px);
+      box-shadow: 0 18px 55px rgba(15, 76, 74, .12);
+      text-align: center;
+    }
+    .brand { color: var(--teal); font-size: 13px; font-weight: 800; letter-spacing: 2px; }
+    h1 { margin: 10px 0 6px; color: var(--teal-dark); font-size: clamp(27px, 7vw, 36px); }
+    .subtitle { margin: 0 0 24px; color: var(--muted); font-size: 14px; }
+    .players { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+    .player {
+      border: 1px solid var(--line); border-radius: 14px; padding: 13px 8px;
+      background: #fbfdfc;
+    }
+    .player.active { border: 2px solid var(--teal); background: var(--mist); padding: 12px 7px; }
+    .player-name { display: block; font-weight: 800; font-size: 14px; }
+    .player-role { display: block; margin-top: 5px; color: var(--muted); font-size: 12px; }
+    .mark { color: var(--teal); font-size: 21px; font-weight: 900; margin-top: 4px; }
+    #status {
+      min-height: 48px; display: flex; align-items: center; justify-content: center;
+      margin: 0 0 14px; padding: 10px; border-radius: 12px;
+      background: var(--mist); color: var(--teal-dark); font-weight: 700;
+    }
+    .board {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px;
+      width: min(100%, 360px); margin: 0 auto 20px;
+    }
+    .cell {
+      aspect-ratio: 1; border: 0; border-radius: 13px; background: #edf4f2;
+      color: var(--teal); font-size: clamp(42px, 13vw, 66px); font-weight: 800;
+      cursor: pointer; transition: background .15s, transform .15s;
+    }
+    .cell:hover:enabled { background: #dcebe7; transform: translateY(-2px); }
+    .cell:disabled { cursor: default; }
+    .cell.o { color: #d39b00; }
+    .cell:focus-visible, .action:focus-visible { outline: 3px solid var(--sun); outline-offset: 3px; }
+    .actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+    .action {
+      border: 0; border-radius: 999px; padding: 12px 22px; font-weight: 800;
+      font-size: 14px; cursor: pointer; text-decoration: none;
+    }
+    .restart { color: white; background: var(--teal); }
+    .home { color: var(--teal); background: var(--mist); }
+    .hint { margin: 18px 0 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
+    @media (max-width: 360px) {
+      .player-name { font-size: 12px; }
+      .players { gap: 7px; }
+      .action { padding: 11px 16px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="game-shell">
+    <div class="brand">A TO Z CLEANER</div>
+    <h1>Tic Tac Toe</h1>
+    <p class="subtitle">Play against the computer</p>
+
+    <section class="players" aria-label="Players">
+      <div class="player" id="computerCard">
+        <span class="player-name">A TO Z COMPANY</span>
+        <span class="player-role">Computer</span>
+        <span class="mark">X</span>
+      </div>
+      <div class="player" id="hostCard">
+        <span class="player-name">HOST</span>
+        <span class="player-role">You</span>
+        <span class="mark">O</span>
+      </div>
+    </section>
+
+    <p id="status" role="status" aria-live="polite">Computer (X) is thinking...</p>
+    <section class="board" id="board" aria-label="Tic Tac Toe board">
+      <button class="cell" data-index="0" aria-label="Empty cell 1"></button>
+      <button class="cell" data-index="1" aria-label="Empty cell 2"></button>
+      <button class="cell" data-index="2" aria-label="Empty cell 3"></button>
+      <button class="cell" data-index="3" aria-label="Empty cell 4"></button>
+      <button class="cell" data-index="4" aria-label="Empty cell 5"></button>
+      <button class="cell" data-index="5" aria-label="Empty cell 6"></button>
+      <button class="cell" data-index="6" aria-label="Empty cell 7"></button>
+      <button class="cell" data-index="7" aria-label="Empty cell 8"></button>
+      <button class="cell" data-index="8" aria-label="Empty cell 9"></button>
+    </section>
+
+    <div class="actions">
+      <button class="action restart" id="restart">Restart Game</button>
+      <a class="action home" href="index.html">Back to Website</a>
+    </div>
+    <p class="hint">A TO Z COMPANY plays as X. You play as O. The computer makes its move automatically.</p>
+  </main>
+
+  <script>
+    const cells = [...document.querySelectorAll(".cell")];
+    const statusEl = document.getElementById("status");
+    const computerCard = document.getElementById("computerCard");
+    const hostCard = document.getElementById("hostCard");
+    const restartBtn = document.getElementById("restart");
+    const wins = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+    let board = Array(9).fill("");
+    let gameOver = false;
+    let hostTurn = false;
+    let thinkingTimer = null;
+
+    function winnerOf(state) {
+      for (const [a,b,c] of wins) {
+        if (state[a] && state[a] === state[b] && state[a] === state[c]) return state[a];
+      }
+      return state.every(Boolean) ? "draw" : null;
+    }
+
+    function minimax(state, isMaximizing, depth) {
+      const result = winnerOf(state);
+      if (result === "X") return 10 - depth;
+      if (result === "O") return depth - 10;
+      if (result === "draw") return 0;
+
+      if (isMaximizing) {
+        let best = -Infinity;
+        for (let i = 0; i < 9; i++) if (!state[i]) {
+          state[i] = "X";
+          best = Math.max(best, minimax(state, false, depth + 1));
+          state[i] = "";
+        }
+        return best;
+      } else {
+        let best = Infinity;
+        for (let i = 0; i < 9; i++) if (!state[i]) {
+          state[i] = "O";
+          best = Math.min(best, minimax(state, true, depth + 1));
+          state[i] = "";
+        }
+        return best;
+      }
+    }
+
+    function computerMove() {
+      if (gameOver) return;
+      let bestScore = -Infinity;
+      let bestMoves = [];
+      for (let i = 0; i < 9; i++) if (!board[i]) {
+        board[i] = "X";
+        const score = minimax(board, false, 0);
+        board[i] = "";
+        if (score > bestScore) { bestScore = score; bestMoves = [i]; }
+        else if (score === bestScore) bestMoves.push(i);
+      }
+      if (!bestMoves.length) return;
+      const move = bestMoves[Math.floor(Math.random() * bestMoves.length)];
+      board[move] = "X";
+      render();
+      finishOrContinue();
+    }
+
+    function render() {
+      cells.forEach((cell, i) => {
+        cell.textContent = board[i];
+        cell.classList.toggle("o", board[i] === "O");
+        cell.disabled = gameOver || !hostTurn || Boolean(board[i]);
+        cell.setAttribute("aria-label", board[i] ? `Cell ${i + 1}: ${board[i]}` : `Empty cell ${i + 1}`);
+      });
+      computerCard.classList.toggle("active", !gameOver && !hostTurn);
+      hostCard.classList.toggle("active", !gameOver && hostTurn);
+    }
+
+    function finishOrContinue() {
+      const result = winnerOf(board);
+      if (result) {
+        gameOver = true;
+        hostTurn = false;
+        if (result === "X") statusEl.textContent = "A TO Z COMPANY (Computer) wins!";
+        else if (result === "O") statusEl.textContent = "Congratulations! HOST wins!";
+        else statusEl.textContent = "It's a draw!";
+        render();
+        return;
+      }
+      hostTurn = !hostTurn;
+      statusEl.textContent = hostTurn ? "Your turn — choose a square (O)." : "A TO Z COMPANY is thinking...";
+      render();
+      if (!hostTurn) thinkingTimer = setTimeout(computerMove, 450);
+    }
+
+    cells.forEach(cell => cell.addEventListener("click", () => {
+      const i = Number(cell.dataset.index);
+      if (gameOver || !hostTurn || board[i]) return;
+      board[i] = "O";
+      render();
+      finishOrContinue();
+    }));
+
+    function restartGame() {
+      clearTimeout(thinkingTimer);
+      board = Array(9).fill("");
+      gameOver = false;
+      hostTurn = false;
+      statusEl.textContent = "Computer (X) is thinking...";
+      render();
+      thinkingTimer = setTimeout(computerMove, 450);
+    }
+    restartBtn.addEventListener("click", restartGame);
+    restartGame();
+  </script>
+</body>
+</html>
