@@ -1,0 +1,17 @@
+AZ CLEANER — REVIEW SYSTEM SETUP
+
+এই প্যাকেজে আছে: index.html (review form/list যোগ করা), reviews.js, firebase-config.js, admin.html, admin.js, firestore.rules। game.html আগের মতোই থাকবে।
+
+গুরুত্বপূর্ণ: Firebase project config না বসানো পর্যন্ত review system চালু হবে না। নিরাপত্তার জন্য admin account ও admin UID Firebase Console-এ সেট করতে হবে।
+
+১) https://console.firebase.google.com/ এ গিয়ে একটি Firebase project তৈরি করো।
+২) Project settings > Your apps > Web app (</>) তৈরি করে Firebase config কপি করো। firebase-config.js ফাইলে placeholder value-গুলো নিজের config দিয়ে replace করো।
+৩) Authentication > Sign-in method থেকে Email/Password enable করো। Authentication > Users থেকে নিজের admin email/password দিয়ে user তৈরি করো।
+৪) Firestore Database তৈরি করো। Rules ট্যাবে firestore.rules ফাইলের সম্পূর্ণ rules paste করে Publish করো।
+৫) Authentication > Users থেকে admin user-এর UID কপি করো। Firestore Data-তে admins নামে collection তৈরি করো; document ID হিসেবে ওই UID দাও; একটি field admin = true (boolean) যোগ করো। এই admins document কেবল Console থেকেই তৈরি করবে।
+৬) সব ফাইল GitHub repository-র root folder-এ upload/replace করে commit & push করো।
+৭) Admin dashboard: https://YOUR-GITHUB-USERNAME.github.io/YOUR-REPOSITORY/admin.html
+
+কাস্টমার review জমা দিলে pending থাকবে। Admin login করে Approve করলে public website-এ দেখাবে; Reject করলে দেখাবে না।
+
+নোট: Firebase config-এর apiKey ওয়েব অ্যাপে public identifier; নিরাপত্তা Firestore Rules এবং admin UID authorization দিয়ে enforce করা হয়। Admin password কখনো HTML/JS ফাইলে লিখবে না।

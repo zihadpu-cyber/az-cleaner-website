@@ -121,6 +121,33 @@
   </div>
 </section>
 
+
+<section class="wrap section" id="customer-reviews">
+  <h2>Customer Reviews</h2>
+  <p class="sub">Share your experience with A TO Z Cleaner.</p>
+  <div class="card" style="padding:22px;border-radius:16px;margin-bottom:24px;">
+    <div id="reviewAverage" style="font-size:18px;font-weight:700;color:#0f4c4a;margin-bottom:14px;">No ratings yet</div>
+    <form id="reviewForm">
+      <label for="reviewName">Your name</label>
+      <input id="reviewName" maxlength="60" required placeholder="Enter your name">
+      <label for="reviewRating">Your rating</label>
+      <select id="reviewRating" required>
+        <option value="">Select rating</option>
+        <option value="5">★★★★★ — Excellent</option>
+        <option value="4">★★★★ — Very good</option>
+        <option value="3">★★★ — Good</option>
+        <option value="2">★★ — Fair</option>
+        <option value="1">★ — Poor</option>
+      </select>
+      <label for="reviewMessage">Your review</label>
+      <textarea id="reviewMessage" rows="4" maxlength="1000" required placeholder="Write about your experience..."></textarea>
+      <button class="btn" type="submit">Submit Review</button>
+      <p id="reviewStatus" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+  <div id="reviewList" class="grid" aria-live="polite"><p>Loading reviews...</p></div>
+</section>
+
 <section class="wrap section" id="contact">
   <h2>Contact</h2>
   <p><a id="phoneLink" href="#"></a><br><a id="emailLink" href="#"></a></p>
@@ -162,5 +189,6 @@
        preload="auto"></audio>
 <script src="config.js"></script>
 <script src="app.js"></script>
+<script type="module" src="reviews.js"></script>
 </body>
 </html>
